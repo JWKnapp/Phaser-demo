@@ -1,14 +1,33 @@
-var demo = {};
+var demo = {},
+  centerX = 1500 / 2,
+  centerY = 1000 / 2,
+  derp,
+  speed = 4;
 demo.state0 = function() {};
 demo.state0.prototype = {
-  preload: function() {},
+  preload: function() {
+    game.load.image('derp', 'assets/sprites/derp.png');
+  },
   create: function() {
     game.stage.backgroundColor = '#DDDDDD';
     console.log('state0');
     addChangeStateEventListeners();
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    derp = game.add.sprite(centerX, centerY, 'derp');
+    derp.anchor.setTo(0.5, 0.5);
   },
-  update: function() {},
+  update: function() {
+    if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
+      derp.x += speed;
+    } else if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
+      derp.x -= speed;
+    }
+    if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
+      derp.y -= speed;
+    } else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
+      derp.y += speed;
+    }
+  },
 };
 
 function changeState(i, stateNum) {
