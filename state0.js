@@ -48,16 +48,19 @@ demo.state0.prototype = {
     }
     if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
       derp.y -= speed;
+      derp.animations.play('walk', 14, true);
       if (derp.y < 422) {
         derp.y = 422;
       }
     } else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
       derp.y += speed;
+      derp.animations.play('walk', 14, true);
     }
   },
 };
 
 function changeState(i, stateNum) {
+  console.log('sate' + stateNum);
   game.state.start('state' + stateNum);
 }
 
